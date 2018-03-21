@@ -1,36 +1,44 @@
-from bt_node import BT_Node
+class BT_Node():
+
+	def __init__(self, data):
+		self.data = data
+		self.leftchild = None
+		self.rightchild = None
+		self.parent = None
 
 class Binary_Tree():
 
-	def __init__(self, data=None):
-		self.head = BT_Node(data)
-
+	def __init__(self):
+		self.head = None
 	#Our insert function
+
 	def tree_append(self, data):
-		curr = self.head
-		nn = BT_Node(data)
-		while True:
-			parent = curr
-			if curr.data < data and curr.rightchild == None:
-				curr.rightchild = nn
-				nn.parent = parent
-				break
-			elif curr.data > data and curr.leftchild == None:
-				curr.leftchild = nn
-				nn.parent = parent
-				break
-			elif curr.data < data:
-				curr = curr.rightchild
-				curr.parent = parent
-			elif curr.data > data:
-				curr = curr.leftchild
-				curr.parent = parent
+		if self.head == None:
+			self.head = BT_Node(data)
+			return
+		else:
+			curr = self.head
+			nn = BT_Node(data)
+			while True:
+				parent = curr
+				if curr.data < data and curr.rightchild == None:
+					curr.rightchild = nn
+					nn.parent = parent
+					return
+				elif curr.data > data and curr.leftchild == None:
+					curr.leftchild = nn
+					nn.parent = parent
+					return
+				elif curr.data < data:
+					curr = curr.rightchild
+				elif curr.data > data:
+					curr = curr.leftchild
 
 	def retrieve_lowest(self):
 		if self.head == None:
 			return "This binary tree is empty"
 		else:
-			curr = self.head
+			curr = self.head	
 			while curr.leftchild != None:
 				curr = curr.leftchild
 			return curr.data
@@ -68,10 +76,10 @@ class Binary_Tree():
 			while True:
 				if curr.rightchild == None:
 					parent.rightchild = None
-					break
+					return
 				else:
 					parent = curr
-					curr = curr.
+					curr = right.child
 	def pop_lowest(self):
 		if self.head.leftchild == None:
 			self.head = None
@@ -106,8 +114,9 @@ class Binary_Tree():
 
 
 
-my_tree = Binary_Tree(0)
+my_tree = Binary_Tree()
 my_tree.tree_append(-1)
+my_tree.tree_append(-2)
 my_tree.tree_append(4)
 my_tree.tree_append(6)
 my_tree.tree_append(8)
